@@ -11,8 +11,6 @@ import {
   ArrowLeft,
   ShoppingBag,
   RotateCw,
-  Volume2,
-  VolumeX,
   ChevronRight,
   CookingPot,
 } from "lucide-react";
@@ -235,59 +233,22 @@ export const WaysToGoya: React.FC = () => {
       {/* Background Subtle Accent Pattern */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#2C2B22_1px,transparent_1px)] [background-size:16px_16px]" />
 
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
-        {/* Section Header - Pill removed per user request */}
-        <div className="text-center max-w-3xl mx-auto mb-8 lg:mb-12">
+      <div className="w-full relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-4xl mx-auto px-4 sm:px-6 mb-6 lg:mb-8">
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-text tracking-tight">
             So Many Ways to Goya.
           </h2>
 
           <p className="mt-3 text-base md:text-lg text-text/80 max-w-2xl mx-auto">
             From screaming-hot cast-iron skillets to cold burrata spirals.
-            <span className="font-semibold text-text"> Spin the dial or click a technique </span>
+            <span className="font-semibold text-text"> Spin the dial </span>
             to see how real Spanish olive oil transforms every dish.
           </p>
-
-          {/* Quick-Switch Chips */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
-            {COOKING_METHODS.map((method, idx) => {
-              const isCurrent = idx === activeIndex;
-              return (
-                <button
-                  key={`pill-${method.id}`}
-                  onClick={() => selectMethod(idx)}
-                  className={`px-3.5 py-1.5 rounded-full font-tag text-xs font-bold transition-all duration-200 border flex items-center gap-1.5 cursor-pointer ${
-                    isCurrent
-                      ? "bg-text text-highlight border-text shadow-graza -translate-y-0.5 scale-105"
-                      : "bg-highlight text-text border-text/40 hover:border-text hover:bg-brand/30"
-                  }`}
-                >
-                  <span className={isCurrent ? "text-secondary" : "text-goya-blue"}>
-                    {method.icon}
-                  </span>
-                  <span>{method.label.toUpperCase()}</span>
-                </button>
-              );
-            })}
-
-            {/* Sound Toggle */}
-            <button
-              onClick={() => setSoundEnabled(!soundEnabled)}
-              title={soundEnabled ? "Mute interactive sounds" : "Enable tactile sound effects"}
-              className={`px-3 py-1.5 rounded-full font-tag text-xs font-bold border transition-colors flex items-center gap-1.5 ${
-                soundEnabled
-                  ? "bg-brand text-text border-text"
-                  : "bg-highlight/50 text-text/60 border-text/30 hover:text-text"
-              }`}
-            >
-              {soundEnabled ? <Volume2 size={13} /> : <VolumeX size={13} />}
-              <span className="hidden sm:inline">{soundEnabled ? "Sound On" : "Sound Off"}</span>
-            </button>
-          </div>
         </div>
 
-        {/* FULL STAGE: Immersive Full Culinary Canvas with Side Dial & Distributed Info */}
-        <div className="relative w-full rounded-28 overflow-hidden border-2 border-text shadow-graza-lg bg-text min-h-[660px] lg:min-h-[720px] flex flex-col justify-between p-4 sm:p-8 lg:p-10">
+        {/* FULL STAGE: Immersive Full Culinary Canvas Edge-to-Edge with Full Width */}
+        <div className="relative w-full border-y-2 border-text bg-text min-h-[680px] lg:min-h-[760px] flex flex-col justify-between p-4 sm:p-8 lg:p-12 xl:p-14 overflow-hidden">
           {/* Full-Bleed Cooked Dish Photo Canvas */}
           <div className="absolute inset-0 z-0">
             <Image

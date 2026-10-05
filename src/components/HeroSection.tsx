@@ -235,13 +235,21 @@ export const HeroSection: React.FC = () => {
         </div>
         */}
 
-        {/* Sound Toggle Button (Top-Right, placed neatly below transparent navbar) */}
+        {/* Sound Off/On Toggle Button (Extreme Top-Left of Hero with slight right spacing from edge) */}
         <button
           onClick={toggleMute}
           aria-label={isMuted ? "Unmute video" : "Mute video"}
-          className="absolute top-22 sm:top-24 right-5 sm:right-8 z-20 w-10 h-10 rounded-full bg-highlight/90 backdrop-blur-md border border-text flex items-center justify-center text-text hover:bg-brand transition-colors shadow-sm cursor-pointer"
+          title={isMuted ? "Sound Off (Click to unmute)" : "Sound On (Click to mute)"}
+          className="absolute top-5 sm:top-6 left-4 sm:left-6 lg:left-8 z-30 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-xl border border-white/30 hover:border-white/60 text-white flex items-center gap-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all cursor-pointer select-none active:scale-95"
         >
-          {isMuted ? <VolumeX size={17} /> : <Volume2 size={17} />}
+          {isMuted ? (
+            <VolumeX size={15} className="text-white/80" />
+          ) : (
+            <Volume2 size={15} className="text-brand animate-pulse" />
+          )}
+          <span className="font-tag text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white drop-shadow-sm">
+            {isMuted ? "Sound Off" : "Sound On"}
+          </span>
         </button>
 
         {/* BOTTOM-LEFT: Persistent Text Headline & Story (Mobile Responsive Stacking) */}

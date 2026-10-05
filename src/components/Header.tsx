@@ -37,8 +37,12 @@ export const Header: React.FC<HeaderProps> = ({ onSelectCategory }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 lg:px-8 h-20 flex items-center justify-between">
-        {/* Left: Logo */}
-        <div className="flex items-center flex-shrink-0">
+        {/* Left: Logo (Offset on mobile when over hero to give room to the extreme top-left sound toggle) */}
+        <div
+          className={`flex items-center flex-shrink-0 transition-all duration-300 ${
+            !isScrolled ? "ml-28 sm:ml-32 lg:ml-0" : ""
+          }`}
+        >
           <Link href="/" className="flex items-center" aria-label="Goya Olive Oil Home">
             <GoyaLogo
               fillColor={isScrolled ? "#003296" : "#FFFFFF"}
