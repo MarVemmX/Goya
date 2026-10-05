@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Squeeze bottle body -->
+  <path d="M7 9 C7 6.5 9 6 12 6 C15 6 17 6.5 17 9 L17 19 C17 21 15 22 12 22 C9 22 7 21 7 19 Z" fill="#2C2C2A" fill-opacity="0.1" />
+  <!-- Spout / Nozzle -->
+  <path d="M10 6 L10 3 L14 3 L14 6" />
+  <line x1="12" y1="3" x2="12" y2="1.5" stroke-width="2.5" />
+  <!-- Center grip line -->
+  <path d="M9 13 Q12 14 15 13" opacity="0.6" />
+</svg>

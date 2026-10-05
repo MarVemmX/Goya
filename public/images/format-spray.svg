@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Spray Bottle body -->
+  <path d="M8 10 C8 8 10 7.5 12 7.5 C14 7.5 16 8 16 10 L16 20 C16 21 15 22 12 22 C9 22 8 21 8 20 Z" fill="#2C2C2A" fill-opacity="0.1" />
+  <!-- Trigger head -->
+  <path d="M11 7.5 L11 5 L17 4 L18 6 L14 7.5 Z" fill="#2C2C2A" stroke="currentColor" stroke-width="1.5" />
+  <!-- Trigger lever -->
+  <path d="M12 6 C10 6 9 8 9 10" stroke-width="2" />
+  <!-- Spray dots -->
+  <circle cx="21" cy="4" r="0.75" fill="currentColor" stroke="none" />
+  <circle cx="19.5" cy="2" r="0.75" fill="currentColor" stroke="none" />
+</svg>

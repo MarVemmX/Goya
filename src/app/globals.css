@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand: #E5A93C; /* Liquid Spanish Olive Oil Gold (Sol de Andalucía) */
+  --color-accent: #7CAE4B; /* Fresh Andalusian Olive Leaf */
+  --color-secondary: #F5B82E; /* Sun-Drenched Seville Amber */
+  --color-text: #2C2B22; /* Deep Roasted Andalusian Olive Umber */
+  --color-background: #FAF5EE; /* Warm Sun-Washed Mediterranean Linen */
+  --color-highlight: #FFFDF9; /* Clean Alabaster Porcelain */
+  --color-stroke: #D9A74A; /* Warm Golden Amber Border */
+  --color-goya-blue: #004B97;
+  --color-goya-gold: #DDA31A;
+
+  --height-bar: 60px;
+  --height-promo: 28px;
+  --height-header: 88px;
+
+  --font-garamond: 'EB Garamond', Georgia, serif;
+  --font-mono: 'Space Mono', Courier, monospace;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Headings font */
+h1, h2, h3, .font-serif-condensed {
+  font-family: var(--font-garamond);
+  letter-spacing: -0.02em;
+}
+
+/* Graza Monospaced Tag typography */
+.font-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Graza Standard Button */
+.btn--std {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: var(--color-brand);
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  padding: 10px 24px;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 3px 3px 0px var(--color-text);
+  user-select: none;
+  cursor: pointer;
+}
+
+.btn--std:hover:not(:disabled) {
+  transform: translate(1.5px, 1.5px);
+  box-shadow: 1.5px 1.5px 0px var(--color-text);
+}
+
+.btn--std:active:not(:disabled) {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px var(--color-text);
+}
+
+.btn--std:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #E2D5C8;
+  box-shadow: none;
+}
+
+.btn--std-secondary {
+  background-color: var(--color-highlight);
+}
+
+.btn--std-secondary:hover:not(:disabled) {
+  background-color: var(--color-brand);
+}
+
+.btn--std-blue {
+  background-color: #004B97;
+  color: #FFF4EC;
+  border-color: #003366;
+  box-shadow: 3px 3px 0px #002244;
+}
+
+.btn--std-blue:hover:not(:disabled) {
+  background-color: #003B77;
+}
+
+/* Dashed Borders */
+.border-b--dashed {
+  border-bottom: 1px dashed var(--color-text);
+}
+
+.border-t--dashed {
+  border-top: 1px dashed var(--color-text);
+}
+
+.border-y--dashed {
+  border-top: 1px dashed var(--color-text);
+  border-bottom: 1px dashed var(--color-text);
+}
+
+.border-l--dashed {
+  border-left: 1px dashed var(--color-text);
+}
+
+.border-r--dashed {
+  border-right: 1px dashed var(--color-text);
+}
+
+.border-x--dashed {
+  border-left: 1px dashed var(--color-text);
+  border-right: 1px dashed var(--color-text);
+}
+
+/* Solid Borders */
+.border-b--solid {
+  border-bottom: 1px solid var(--color-text);
+}
+
+.border-t--solid {
+  border-top: 1px solid var(--color-text);
+}
+
+.border-y--solid {
+  border-top: 1px solid var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+}
+
+.border-l--solid {
+  border-left: 1px solid var(--color-text);
+}
+
+.border-r--solid {
+  border-right: 1px solid var(--color-text);
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.motion-paused .animate-marquee {
+  animation: none !important;
+}
+
+/* Hide scrollbar */
+.scrollbar--none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar--none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Product Card Hover effects */
+.product-card-img-container {
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+}
+
+.product-card-img-container img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.product-card-img-container:hover .hover-overlay {
+  opacity: 1;
+}
+
+.product-card-img-container:hover .primary-img {
+  transform: scale(1.04);
+}
+
+/* Goya Olive Oil Shimmer Pill */
+.shimmer-badge {
+  background: linear-gradient(90deg, #E5A93C, #F5B82E, #7CAE4B, #E5A93C);
+  background-size: 300% 100%;
+  animation: shimmer 4s infinite linear;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Liquid Olive Oil Wiggly Effect on Impact */
+@keyframes oil-wiggle {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  15% {
+    transform: scale(1.18, 0.82) rotate(-3deg) translateY(4px);
+  }
+  30% {
+    transform: scale(0.85, 1.15) rotate(3deg) translateY(-3px);
+  }
+  45% {
+    transform: scale(1.1, 0.92) rotate(-2deg) translateY(2px);
+  }
+  60% {
+    transform: scale(0.95, 1.05) rotate(1deg);
+  }
+  75% {
+    transform: scale(1.02, 0.98) rotate(-0.5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.animate-oil-wiggle {
+  animation: oil-wiggle 1s cubic-bezier(0.25, 1, 0.5, 1);
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+/* Olive Oil Splash Ripple */
+@keyframes splash-ripple {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+    border-width: 3px;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+.animate-splash-ripple {
+  animation: splash-ripple 0.85s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+/* Floating Droplet Idle */
+@keyframes drop-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.04, 0.96);
+  }
+}
+
+.animate-drop-float {
+  animation: drop-float 2.5s ease-in-out infinite;
+}
+
+/* Bottle Squeeze Effect */
+@keyframes bottle-squeeze {
+  0% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(0.92, 1.05) rotate(-3deg); }
+  50% { transform: scale(1.04, 0.95) rotate(1.5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.animate-bottle-squeeze {
+  animation: bottle-squeeze 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
