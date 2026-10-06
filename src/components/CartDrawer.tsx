@@ -22,6 +22,18 @@ export const CartDrawer: React.FC = () => {
     addToCart,
   } = useCart();
 
+  // Prevent body scroll when cart is open
+  React.useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isCartOpen]);
+
   if (!isCartOpen) return null;
 
   // Upsell suggestion: pick an item not currently in cart
@@ -48,10 +60,10 @@ export const CartDrawer: React.FC = () => {
 
       {/* Drawer */}
       <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
-        <div className="w-screen max-w-md bg-highlight text-text border-l-2 border-text flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
+        <div className="w-full sm:w-screen max-w-full sm:max-w-md bg-highlight text-text border-l-2 border-text flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
           {/* Header */}
-          <div className="flex-shrink-0 h-16 px-6 bg-brand border-b border-text flex items-center justify-between">
-            <h2 className="text-lg font-bold flex items-center gap-2 font-serif">
+          <div className="flex-shrink-0 h-14 sm:h-16 px-4 sm:px-6 bg-brand border-b border-text flex items-center justify-between">
+            <h2 className="text-base sm:text-lg font-bold flex items-center gap-2 font-serif">
               <span>Cart</span>
               <span className="font-typewriter text-xs bg-text text-highlight px-2 py-0.5 rounded-full">
                 ({totalItems})
@@ -59,7 +71,7 @@ export const CartDrawer: React.FC = () => {
             </h2>
             <button
               onClick={() => setIsCartOpen(false)}
-              className="font-tag text-xs font-bold uppercase tracking-wider hover:underline"
+              className="font-tag text-xs font-bold uppercase tracking-wider hover:underline p-1 cursor-pointer"
               aria-label="Close cart"
             >
               Close [×]
@@ -240,7 +252,7 @@ export const CartDrawer: React.FC = () => {
 
           {/* Footer Checkout Bar */}
           {cart.length > 0 && (
-            <div className="p-6 bg-background border-t-2 border-text flex-shrink-0 space-y-3">
+            <div className="p-4 sm:p-6 bg-background border-t-2 border-text flex-shrink-0 space-y-2.5 sm:space-y-3">
               <div className="flex justify-between items-center text-sm font-medium">
                 <span>Subtotal</span>
                 <span className="font-bold text-lg font-serif">

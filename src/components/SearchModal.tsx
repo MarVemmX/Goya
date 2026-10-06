@@ -10,6 +10,18 @@ export const SearchModal: React.FC = () => {
   const { isSearchOpen, setIsSearchOpen, setSelectedProduct, addToCart } = useCart();
   const [query, setQuery] = useState("");
 
+  // Prevent body scroll when search modal is open
+  React.useEffect(() => {
+    if (isSearchOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isSearchOpen]);
+
   if (!isSearchOpen) return null;
 
   const results = query.trim()
@@ -27,39 +39,39 @@ export const SearchModal: React.FC = () => {
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 overflow-y-auto bg-text/60 backdrop-blur-xs flex items-start justify-center pt-20 px-4 animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 overflow-y-auto bg-text/60 backdrop-blur-xs flex items-start justify-center pt-12 sm:pt-20 px-3 sm:px-4 animate-in fade-in duration-200"
       onClick={() => setIsSearchOpen(false)}
     >
       <div
-        className="relative bg-background text-text border-2 border-text rounded-20 max-w-2xl w-full p-6 shadow-2xl"
+        className="relative bg-background text-text border-2 border-text rounded-16 sm:rounded-20 max-w-2xl w-full p-4 sm:p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between pb-4 border-b border-dashed border-text/30">
-          <span className="font-tag text-xs font-bold uppercase tracking-wider text-goya-blue">
+        <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-dashed border-text/30">
+          <span className="font-tag text-[11px] sm:text-xs font-bold uppercase tracking-wider text-goya-blue">
             Pantry Search
           </span>
           <button
             onClick={() => setIsSearchOpen(false)}
-            className="text-text hover:text-red-600 transition-colors"
+            className="text-text hover:text-red-600 transition-colors p-1 cursor-pointer"
             aria-label="Close search"
           >
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
         {/* Input Bar */}
-        <div className="relative mt-4">
+        <div className="relative mt-3 sm:mt-4">
           <Search
-            size={20}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-text/50"
+            size={18}
+            className="absolute left-3.5 sm:left-4 top-1/2 -translate-y-1/2 text-text/50"
           />
           <input
             type="text"
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Watcha lookin' for?? (e.g. Squeeze, Picual, Glass, Refill, Aioli)"
-            className="w-full bg-highlight border-2 border-text rounded-full py-3.5 pl-12 pr-12 text-sm sm:text-base font-medium placeholder:text-text/40 focus:outline-none focus:ring-2 focus:ring-brand"
+            placeholder="Search olive oil, format, Picual, aioli..."
+            className="w-full bg-highlight border-2 border-text rounded-full py-2.5 sm:py-3.5 pl-10 sm:pl-12 pr-10 sm:pr-12 text-xs sm:text-base font-medium placeholder:text-text/40 focus:outline-none focus:ring-2 focus:ring-brand"
           />
           {query && (
             <button

@@ -4,17 +4,16 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
 import { PRODUCTS } from "@/data/products";
-import { Droplets, Volume2, VolumeX } from "lucide-react";
+import { Droplets } from "lucide-react";
 import { GoyaBottleCrest, GOYA_LETTER_PATHS } from "./GoyaLogo";
 import { AndalusianSolGlint, SpanishGlintCluster } from "./icons/ArtisanalSparkles";
 
 export const HeroSection: React.FC = () => {
-  const { addToCart } = useCart();
+  const { addToCart, isHeroVideoMuted } = useCart();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isWiggling, setIsWiggling] = useState(false);
   const [splashCount, setSplashCount] = useState(0);
   const [isBottleSqueezed, setIsBottleSqueezed] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
   const [isLogoGolden, setIsLogoGolden] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -192,13 +191,12 @@ export const HeroSection: React.FC = () => {
     requestAnimationFrame(animate);
   };
 
-  // Toggle video mute
-  const toggleMute = () => {
+  // Sync video audio with global mute state from navbar sound toggle
+  useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+      videoRef.current.muted = isHeroVideoMuted;
     }
-  };
+  }, [isHeroVideoMuted]);
 
   return (
     <section ref={heroRef} className="relative w-full overflow-hidden bg-background">
@@ -222,69 +220,41 @@ export const HeroSection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-text/95 via-text/30 to-text/40 pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(44,43,34,0.45)_100%)] pointer-events-none" />
         {/* Top Scrim for crisp navbar contrast over bright video frames */}
-        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-text/80 via-text/35 to-transparent pointer-events-none z-10" />
-
-        {/* TOP BAR OVERLAYS */}
-        {/* Live Countertop Glug Badge (Top-Left) - Commented out per user request */}
-        {/*
-        <div className="absolute top-5 left-5 sm:top-8 sm:left-8 z-20">
-          <div className="bg-highlight/90 backdrop-blur-md border border-text px-3.5 py-1.5 rounded-full text-xs font-tag font-bold flex items-center gap-2 shadow-sm text-text">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
-            <span>LIVE COUNTERTOP GLUG</span>
-          </div>
-        </div>
-        */}
-
-        {/* Sound Off/On Toggle Button (Extreme Top-Left of Hero with slight right spacing from edge) */}
-        <button
-          onClick={toggleMute}
-          aria-label={isMuted ? "Unmute video" : "Mute video"}
-          title={isMuted ? "Sound Off (Click to unmute)" : "Sound On (Click to mute)"}
-          className="absolute top-5 sm:top-6 left-4 sm:left-6 lg:left-8 z-30 px-3 py-1.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-xl border border-white/30 hover:border-white/60 text-white flex items-center gap-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all cursor-pointer select-none active:scale-95"
-        >
-          {isMuted ? (
-            <VolumeX size={15} className="text-white/80" />
-          ) : (
-            <Volume2 size={15} className="text-brand animate-pulse" />
-          )}
-          <span className="font-tag text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white drop-shadow-sm">
-            {isMuted ? "Sound Off" : "Sound On"}
-          </span>
-        </button>
+        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-text/90 via-text/40 to-transparent pointer-events-none z-10" />
 
         {/* BOTTOM-LEFT: Persistent Text Headline & Story (Mobile Responsive Stacking) */}
-        <div className="absolute bottom-28 left-4 right-4 sm:bottom-8 sm:left-8 sm:right-auto md:bottom-10 md:left-10 lg:bottom-12 lg:left-12 z-20 sm:max-w-xl text-left space-y-2.5 sm:space-y-4">
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-highlight leading-[1.08] tracking-tight drop-shadow-md">
+        <div className="absolute bottom-20 xs:bottom-24 left-3.5 right-3.5 xs:left-4 xs:right-4 sm:bottom-8 sm:left-8 sm:right-auto md:bottom-10 md:left-10 lg:bottom-12 lg:left-12 z-20 sm:max-w-xl text-left space-y-1.5 xs:space-y-2 sm:space-y-4">
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-highlight leading-[1.08] tracking-tight drop-shadow-md">
             Olive oil made for cooking,{" "}
             <span className="italic font-normal underline decoration-brand decoration-wavy decoration-3 text-brand">
               not looking.
             </span>
           </h1>
 
-          <p className="text-xs sm:text-base text-highlight/90 leading-relaxed font-normal max-w-lg drop-shadow-sm hidden sm:block">
+          <p className="text-[11px] xs:text-xs sm:text-base text-highlight/90 leading-relaxed font-normal max-w-lg drop-shadow-sm line-clamp-2 sm:line-clamp-none">
             Never blended with old refined oil. Fresh, single-estate Spanish Extra Virgin in a non-drip squeeze bottle built for generous countertop glugs.
           </p>
 
-          <div className="pt-0.5 sm:pt-1 flex flex-wrap items-center gap-3">
+          <div className="pt-0.5 sm:pt-1 flex items-center gap-2.5 sm:gap-3">
             <button
               onClick={() => addToCart(squeezeProduct, 1)}
-              className="btn--std !py-2.5 !px-5 sm:!py-3 sm:!px-7 text-xs sm:text-sm uppercase tracking-wider font-extrabold shadow-graza hover:scale-102"
+              className="btn--std !py-2 !px-3.5 xs:!py-2.5 xs:!px-4 sm:!py-3 sm:!px-7 text-xs sm:text-sm uppercase tracking-wider font-extrabold shadow-graza hover:scale-102"
             >
               <span>Get “El Squeeze” – $18</span>
             </button>
           </div>
         </div>
 
-        {/* BOTTOM-RIGHT: Click Me Bottle Card in Liquid Glass (Mobile Responsive) */}
+        {/* BOTTOM-RIGHT: Click Me Bottle Card in Liquid Glass (Mobile Compact) */}
         <div
           onClick={handleManualSqueeze}
           title="Click to Pour!"
-          className={`absolute bottom-4 right-4 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12 z-20 bg-black/30 backdrop-blur-2xl p-2.5 sm:p-4 rounded-20 sm:rounded-28 border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] cursor-pointer group hover:bg-white/15 hover:border-white/50 hover:scale-105 active:scale-95 transition-all ${
+          className={`absolute bottom-3 right-3 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12 z-20 bg-black/40 backdrop-blur-2xl p-1.5 xs:p-2 sm:p-4 rounded-14 xs:rounded-16 sm:rounded-28 border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] cursor-pointer group hover:bg-white/15 hover:border-white/50 hover:scale-105 active:scale-95 transition-all max-w-[130px] xs:max-w-[145px] sm:max-w-none select-none ${
             isBottleSqueezed ? "animate-bottle-squeeze" : ""
           }`}
         >
-          <div className="flex items-center gap-2.5 sm:gap-3.5">
-            <div className="relative w-10 h-12 sm:w-12 sm:h-14 flex-shrink-0 flex items-center justify-center">
+          <div className="flex items-center gap-2 sm:gap-3.5">
+            <div className="relative w-8 h-10 sm:w-12 sm:h-14 flex-shrink-0 flex items-center justify-center">
               <Image
                 src="/images/goya-bottle-thumb.png"
                 alt="Goya Olive Oil Bottle"
@@ -293,14 +263,14 @@ export const HeroSection: React.FC = () => {
               />
             </div>
             <div>
-              <span className="font-tag text-[9px] sm:text-[9.5px] font-extrabold text-brand uppercase tracking-wider block drop-shadow-xs">
-                Interactive Pour
+              <span className="font-tag text-[8px] sm:text-[9.5px] font-extrabold text-brand uppercase tracking-wider block drop-shadow-xs">
+                Interactive
               </span>
               <span className="font-serif font-bold text-xs sm:text-base text-white block leading-tight drop-shadow-sm mt-0.5">
                 Pour Me!
               </span>
-              <span className="font-tag text-[9px] sm:text-[10px] text-white/80 block tracking-wide mt-0.5 drop-shadow-xs">
-                Click or Scroll ↓
+              <span className="font-tag text-[8px] sm:text-[10px] text-white/80 block tracking-wide mt-0.5 drop-shadow-xs">
+                Tap or Scroll ↓
               </span>
             </div>
           </div>
@@ -337,12 +307,12 @@ export const HeroSection: React.FC = () => {
                 isBottleSqueezed ? "-rotate-6 scale-105 translate-y-1" : "hover:-rotate-2 hover:scale-102"
               }`}
             >
-              <div className="relative w-72 h-[161px] sm:w-80 sm:h-[179px] md:w-96 md:h-[215px] filter drop-shadow-xl hover:drop-shadow-2xl transition-all">
+              <div className="relative w-64 h-[143px] xs:w-72 xs:h-[161px] sm:w-80 sm:h-[179px] md:w-96 md:h-[215px] max-w-[calc(100vw-2rem)] filter drop-shadow-xl hover:drop-shadow-2xl transition-all">
                 <Image
                   src="/images/goya-bottle-clean-spout.png"
                   alt="Authentic Goya Extra Virgin Olive Oil Bottle Pouring"
                   fill
-                  sizes="(max-width: 768px) 320px, 384px"
+                  sizes="(max-width: 640px) 256px, (max-width: 768px) 320px, 384px"
                   className="object-contain"
                   priority
                 />
@@ -538,7 +508,7 @@ export const HeroSection: React.FC = () => {
                 {/* Vector GOYA® Brand Logo with Liquid Gold Gradient & Sheen */}
                 <svg
                   viewBox="0 0 206 58"
-                  className={`w-72 sm:w-96 md:w-[460px] lg:w-[540px] h-auto transition-all duration-700 ${
+                  className={`w-64 sm:w-96 md:w-[460px] lg:w-[540px] max-w-[calc(100vw-2.5rem)] h-auto transition-all duration-700 ${
                     isLogoGolden
                       ? "filter drop-shadow-[0_10px_25px_rgba(221,163,26,0.65)] scale-[1.02]"
                       : "drop-shadow-md text-[#003296]"

@@ -248,7 +248,7 @@ export const WaysToGoya: React.FC = () => {
         </div>
 
         {/* FULL STAGE: Immersive Full Culinary Canvas Edge-to-Edge with Full Width */}
-        <div className="relative w-full border-y-2 border-text bg-text min-h-[680px] lg:min-h-[760px] flex flex-col justify-between p-4 sm:p-8 lg:p-12 xl:p-14 overflow-hidden">
+        <div className="relative w-full border-y-2 border-text bg-text min-h-[580px] xs:min-h-[620px] lg:min-h-[760px] flex flex-col justify-between p-2.5 xs:p-3.5 sm:p-6 lg:p-12 xl:p-14 overflow-hidden">
           {/* Full-Bleed Cooked Dish Photo Canvas */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -265,13 +265,31 @@ export const WaysToGoya: React.FC = () => {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_25%,rgba(44,43,34,0.5)_100%)] pointer-events-none" />
           </div>
 
-          {/* TOP ZONE: Left Rotary Dial (Made smaller to the side) + Right Dish Information */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          {/* MOBILE QUICK TECHNIQUE SELECTOR (Pill Bar for instant touch on phones) */}
+          <div className="relative z-20 flex lg:hidden items-center justify-start gap-1.5 overflow-x-auto scrollbar-none pb-2 pt-1 mb-2 max-w-full touch-pan-x">
+            {COOKING_METHODS.map((method, idx) => (
+              <button
+                key={`mobile-pill-${method.id}`}
+                onClick={() => selectMethod(idx)}
+                className={`flex items-center gap-1.5 px-2.5 xs:px-3 py-1.5 rounded-full text-[11px] xs:text-xs font-tag font-bold whitespace-nowrap transition-all border cursor-pointer select-none active:scale-95 ${
+                  activeIndex === idx
+                    ? "bg-brand text-text border-text shadow-sm ring-1 ring-text"
+                    : "bg-black/55 text-white/90 border-white/25 hover:bg-black/70 backdrop-blur-md"
+                }`}
+              >
+                <span className="text-xs">{method.icon}</span>
+                <span>{method.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* TOP ZONE: Left Rotary Dial (Compact on mobile) + Right Dish Information */}
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-start">
             {/* LEFT / SIDE: The Compact Rotator Dial in Liquid Glass (4 cols on lg) */}
-            <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-center lg:items-start">
-              <div className="bg-black/25 backdrop-blur-2xl rounded-[32px] sm:rounded-[36px] border border-white/25 p-4 sm:p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex flex-col items-center select-none w-full max-w-[310px]">
+            <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-center lg:items-start w-full">
+              <div className="bg-black/40 backdrop-blur-2xl rounded-20 xs:rounded-24 sm:rounded-[36px] border border-white/25 p-2.5 xs:p-3.5 sm:p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex flex-col items-center select-none w-full max-w-[270px] xs:max-w-[290px] sm:max-w-[310px] mx-auto">
                 {/* Rotator Header */}
-                <div className="flex items-center justify-between w-full pb-2 mb-2 border-b border-white/15 text-xs font-tag">
+                <div className="flex items-center justify-between w-full pb-2 mb-1 border-b border-white/15 text-[11px] xs:text-xs font-tag">
                   <span className="font-extrabold uppercase text-white tracking-wider flex items-center gap-1.5 drop-shadow-sm">
                     <RotateCw size={12} className="animate-spin text-brand" style={{ animationDuration: "10s" }} />
                     Dial a Technique
@@ -282,7 +300,7 @@ export const WaysToGoya: React.FC = () => {
                 </div>
 
                 {/* Compact Rotator Orbit Wheel (Liquid Glass) */}
-                <div className="relative w-[210px] h-[210px] sm:w-[230px] sm:h-[230px] flex items-center justify-center my-2">
+                <div className="relative w-[170px] h-[170px] xs:w-[190px] xs:h-[190px] sm:w-[220px] sm:h-[220px] flex items-center justify-center my-1 sm:my-1.5">
                   <div
                     className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.34,1.4,0.64,1)]"
                     style={{ transform: `rotate(${rotationDegree}deg)` }}
@@ -296,7 +314,7 @@ export const WaysToGoya: React.FC = () => {
                           key={`compact-node-${method.id}`}
                           className="absolute top-1/2 left-1/2 w-0 h-0"
                           style={{
-                            transform: `rotate(${nodeAngle}deg) translate(clamp(82px, 22vw, 92px))`,
+                            transform: `rotate(${nodeAngle}deg) translate(clamp(62px, 17vw, 84px))`,
                           }}
                         >
                           <button
@@ -305,22 +323,22 @@ export const WaysToGoya: React.FC = () => {
                             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-transform duration-700 ease-[cubic-bezier(0.34,1.4,0.64,1)] cursor-pointer focus:outline-none"
                             style={{
                               transform: `translate(-50%, -50%) rotate(${-rotationDegree - nodeAngle}deg) scale(${
-                                isCurrent ? 1.15 : 1
+                                isCurrent ? 1.12 : 1
                               })`,
                             }}
                           >
                             {/* Liquid Glass Circular Selector Node */}
                             <div
-                              className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex flex-col items-center justify-center text-center transition-all ${
+                              className={`w-10 h-10 xs:w-11 xs:h-11 sm:w-13 sm:h-13 rounded-full flex flex-col items-center justify-center text-center transition-all ${
                                 isCurrent
-                                  ? "bg-white/30 backdrop-blur-2xl text-white border-2 border-white shadow-[0_0_18px_rgba(255,255,255,0.5)] ring-2 ring-white/40 font-bold"
-                                  : "bg-black/35 backdrop-blur-md text-white/90 border border-white/30 hover:border-white hover:bg-white/20 shadow-sm"
+                                  ? "bg-white/35 backdrop-blur-2xl text-white border-2 border-white shadow-[0_0_18px_rgba(255,255,255,0.5)] ring-2 ring-white/40 font-bold"
+                                  : "bg-black/45 backdrop-blur-md text-white/90 border border-white/30 hover:border-white hover:bg-white/20 shadow-sm"
                               }`}
                             >
-                              <span className={`text-xs ${isCurrent ? "text-brand" : "text-white/80"}`}>
+                              <span className={`text-[10px] xs:text-[11px] sm:text-xs ${isCurrent ? "text-brand" : "text-white/80"}`}>
                                 {method.icon}
                               </span>
-                              <span className="font-tag text-[9px] font-extrabold uppercase leading-none mt-0.5 tracking-tight drop-shadow-sm">
+                              <span className="font-tag text-[7.5px] xs:text-[8px] sm:text-[9px] font-extrabold uppercase leading-none mt-0.5 tracking-tight drop-shadow-sm">
                                 {method.label}
                               </span>
                             </div>
@@ -334,9 +352,9 @@ export const WaysToGoya: React.FC = () => {
                   <button
                     onClick={nextMethod}
                     title="Click to spin next"
-                    className="relative z-20 w-20 h-20 sm:w-22 sm:h-22 rounded-full bg-black/40 backdrop-blur-2xl border border-white/35 text-white hover:bg-white/20 shadow-lg flex flex-col items-center justify-center p-2 text-center cursor-pointer active:scale-95 transition-all group"
+                    className="relative z-20 w-16 h-16 xs:w-18 xs:h-18 sm:w-20 sm:h-20 rounded-full bg-black/45 backdrop-blur-2xl border border-white/35 text-white hover:bg-white/20 shadow-lg flex flex-col items-center justify-center p-1.5 sm:p-2 text-center cursor-pointer active:scale-95 transition-all group select-none"
                   >
-                    <div className="relative w-8 h-9 group-hover:scale-105 transition-transform filter drop-shadow-sm">
+                    <div className="relative w-6 h-7 xs:w-7 xs:h-8 sm:w-8 sm:h-9 group-hover:scale-105 transition-transform filter drop-shadow-sm">
                       <Image
                         src="/images/goya-bottle-thumb.png"
                         alt="Goya Squeeze Bottle"
@@ -344,65 +362,65 @@ export const WaysToGoya: React.FC = () => {
                         className="object-contain"
                       />
                     </div>
-                    <span className="font-tag text-[8px] font-extrabold text-brand uppercase leading-none mt-0.5 tracking-wider drop-shadow-xs">
+                    <span className="font-tag text-[7px] xs:text-[7.5px] sm:text-[8px] font-extrabold text-brand uppercase leading-none mt-0.5 tracking-wider drop-shadow-xs">
                       Glug Dial
                     </span>
-                    <span className="font-sans text-[9px] font-bold text-white leading-tight flex items-center gap-0.5 drop-shadow-xs">
-                      Next <ArrowRight size={9} />
+                    <span className="font-sans text-[7.5px] xs:text-[8.5px] sm:text-[9px] font-bold text-white leading-tight flex items-center gap-0.5 drop-shadow-xs">
+                      Next <ArrowRight size={8} />
                     </span>
                   </button>
                 </div>
 
                 {/* Quick Step Buttons (Liquid Glass) */}
-                <div className="flex items-center justify-between w-full pt-2 border-t border-white/15 text-xs">
+                <div className="flex items-center justify-between w-full pt-1.5 border-t border-white/15 text-xs">
                   <button
                     onClick={prevMethod}
-                    className="p-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 text-white hover:bg-white/25 transition-colors flex items-center justify-center cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 text-white hover:bg-white/25 transition-colors flex items-center justify-center cursor-pointer"
                     aria-label="Previous method"
                   >
-                    <ArrowLeft size={13} />
+                    <ArrowLeft size={12} />
                   </button>
-                  <span className="font-tag text-[11px] font-bold text-white/90 uppercase drop-shadow-sm">
+                  <span className="font-tag text-[9.5px] xs:text-[10px] sm:text-[11px] font-bold text-white/90 uppercase drop-shadow-sm truncate px-1 text-center">
                     {activeMethod.label} ({activeMethod.smokePoint.split(" ")[0]})
                   </span>
                   <button
                     onClick={nextMethod}
-                    className="p-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 text-white hover:bg-white/25 transition-colors flex items-center justify-center cursor-pointer"
+                    className="p-1 sm:p-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/25 text-white hover:bg-white/25 transition-colors flex items-center justify-center cursor-pointer"
                     aria-label="Next method"
                   >
-                    <ArrowRight size={13} />
+                    <ArrowRight size={12} />
                   </button>
                 </div>
               </div>
             </div>
 
             {/* RIGHT: Primary Dish Information & Story */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-4">
+            <div className="lg:col-span-8 xl:col-span-8 space-y-3 sm:space-y-4">
               {/* Method & Heat Badge */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="bg-brand text-text font-tag text-xs font-black uppercase px-3 py-1 rounded-full border border-text shadow-sm">
+              <div className="flex flex-wrap items-center gap-1.5 xs:gap-2">
+                <span className="bg-brand text-text font-tag text-[10px] xs:text-[11px] sm:text-xs font-black uppercase px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-text shadow-sm">
                   Technique 0{activeIndex + 1}: {activeMethod.label}
                 </span>
-                <span className="bg-highlight/90 backdrop-blur-sm text-text font-tag text-xs font-bold px-3 py-1 rounded-full border border-text shadow-sm">
+                <span className="bg-highlight/90 backdrop-blur-sm text-text font-tag text-[10px] xs:text-[11px] sm:text-xs font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-text shadow-sm">
                   {activeMethod.tagline}
                 </span>
-                <span className="bg-black/50 backdrop-blur-sm text-highlight font-tag text-xs font-bold px-3 py-1 rounded-full border border-highlight/40 flex items-center gap-1.5">
-                  <Flame size={13} className="text-secondary" />
+                <span className="bg-black/50 backdrop-blur-sm text-highlight font-tag text-[10px] xs:text-[11px] sm:text-xs font-bold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-highlight/40 flex items-center gap-1.5">
+                  <Flame size={12} className="text-secondary" />
                   {activeMethod.smokePoint}
                 </span>
               </div>
 
               {/* Dish Name */}
-              <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-highlight leading-[1.1] drop-shadow-md">
+              <h3 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-highlight leading-[1.15] drop-shadow-md">
                 {activeMethod.dishName}
               </h3>
 
               {/* Story & Spanish Technique Context */}
-              <div className="max-w-2xl bg-text/65 backdrop-blur-md rounded-16 p-4 sm:p-5 border border-highlight/25 text-highlight text-sm sm:text-base leading-relaxed drop-shadow-sm space-y-2">
+              <div className="max-w-2xl bg-text/65 backdrop-blur-md rounded-14 sm:rounded-16 p-3 xs:p-3.5 sm:p-5 border border-highlight/25 text-highlight text-xs sm:text-sm md:text-base leading-relaxed drop-shadow-sm space-y-1.5 sm:space-y-2">
                 <p className="font-medium text-brand">
                   {activeMethod.shortDesc}
                 </p>
-                <p className="text-highlight/90 text-xs sm:text-sm">
+                <p className="text-highlight/90 text-[11px] xs:text-xs sm:text-sm">
                   {activeMethod.whyGoya}
                 </p>
               </div>
@@ -410,84 +428,83 @@ export const WaysToGoya: React.FC = () => {
           </div>
 
           {/* MIDDLE: Interactive "Glug Oil!" Button floating right above the dish with burst feedback */}
-          <div className="relative z-10 py-6 sm:py-8 flex flex-col items-center justify-center">
+          <div className="relative z-10 py-4 sm:py-6 lg:py-8 flex flex-col items-center justify-center">
             {/* Interactive "Glug Oil!" Button */}
             <button
               onClick={handleSqueezeOil}
-              className="btn--std !py-3 !px-7 text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-brand hover:bg-highlight text-text border-2 border-text shadow-graza-lg flex items-center gap-2.5 active:scale-95 hover:scale-105 transition-all cursor-pointer"
+              className="btn--std !py-2.5 !px-5 sm:!py-3 sm:!px-7 text-[11px] xs:text-xs sm:text-sm font-extrabold uppercase tracking-wider bg-brand hover:bg-highlight text-text border-2 border-text shadow-graza-lg flex items-center gap-2 active:scale-95 hover:scale-105 transition-all cursor-pointer"
               title="Simulate glug of olive oil onto plate"
             >
-              <Droplets size={17} className="text-goya-blue animate-bounce" />
+              <Droplets size={16} className="text-goya-blue animate-bounce" />
               <span>Glug Oil Onto Dish! ({splatCount} Poured)</span>
             </button>
 
             {/* Animated Golden Oil Droplet Burst */}
             {isSqueezingOil && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
-                <div className="w-40 h-40 rounded-full bg-secondary/90 border-4 border-brand animate-splash-ripple flex items-center justify-center shadow-2xl">
-                  <span className="font-tag text-xs font-black text-text bg-brand px-3 py-1 rounded-full border-2 border-text shadow-md">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-secondary/90 border-4 border-brand animate-splash-ripple flex items-center justify-center shadow-2xl">
+                  <span className="font-tag text-[10px] xs:text-xs font-black text-text bg-brand px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border-2 border-text shadow-md">
                     +1 FRESH GLUG! 🫒
                   </span>
                 </div>
               </div>
             )}
 
-            <span className="text-[11px] font-tag font-bold uppercase tracking-wider text-highlight/80 mt-2 bg-text/50 px-3 py-0.5 rounded-full border border-highlight/20 backdrop-blur-sm">
+            <span className="text-[10px] xs:text-[11px] font-tag font-bold uppercase tracking-wider text-highlight/80 mt-1.5 sm:mt-2 bg-text/50 px-2.5 py-0.5 rounded-full border border-highlight/20 backdrop-blur-sm text-center">
               🥘 Prepared with 100% Andalusia First Cold Press
             </span>
           </div>
 
           {/* BOTTOM ZONE: Cooking Metric Badges + Chef's Secret & Bottle Pairing Card */}
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 items-end">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 items-end">
             {/* BOTTOM-LEFT: Metrics Grid (7 cols on lg) */}
-            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-3">
-              <div className="bg-highlight/90 backdrop-blur-md rounded-14 p-3.5 border-2 border-text shadow-sm">
-                <span className="font-tag text-[10px] text-text/70 uppercase font-bold block">
+            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
+              <div className="bg-highlight/90 backdrop-blur-md rounded-12 sm:rounded-14 p-2.5 sm:p-3.5 border-2 border-text shadow-sm">
+                <span className="font-tag text-[9px] xs:text-[10px] text-text/70 uppercase font-bold block">
                   Glug Volume
                 </span>
-                <span className="font-sans text-xs sm:text-sm font-black text-text block mt-0.5">
+                <span className="font-sans text-xs xs:text-[13px] sm:text-sm font-black text-text block mt-0.5">
                   {activeMethod.glugAmount}
                 </span>
               </div>
 
-              <div className="bg-highlight/90 backdrop-blur-md rounded-14 p-3.5 border-2 border-text shadow-sm">
-                <span className="font-tag text-[10px] text-text/70 uppercase font-bold block">
+              <div className="bg-highlight/90 backdrop-blur-md rounded-12 sm:rounded-14 p-2.5 sm:p-3.5 border-2 border-text shadow-sm">
+                <span className="font-tag text-[9px] xs:text-[10px] text-text/70 uppercase font-bold block">
                   Cooking Duration
                 </span>
-                <span className="font-sans text-xs sm:text-sm font-black text-text block mt-0.5">
+                <span className="font-sans text-xs xs:text-[13px] sm:text-sm font-black text-text block mt-0.5">
                   {activeMethod.cookTime}
                 </span>
               </div>
 
-              <div className="bg-highlight/90 backdrop-blur-md rounded-14 p-3.5 border-2 border-text shadow-sm col-span-2 sm:col-span-1">
-                <span className="font-tag text-[10px] text-text/70 uppercase font-bold block">
+              <div className="bg-highlight/90 backdrop-blur-md rounded-12 sm:rounded-14 p-2.5 sm:p-3.5 border-2 border-text shadow-sm col-span-2 sm:col-span-1">
+                <span className="font-tag text-[9px] xs:text-[10px] text-text/70 uppercase font-bold block">
                   Flavor Profile
                 </span>
-                <span className="font-sans text-xs sm:text-sm font-bold text-goya-blue block mt-0.5 truncate">
+                <span className="font-sans text-xs xs:text-[13px] sm:text-sm font-bold text-goya-blue block mt-0.5 truncate">
                   {activeMethod.flavorProfile.split(",")[0]}
                 </span>
               </div>
 
               {/* Chef's Pro-Tip Strip */}
-              <div className="col-span-2 sm:col-span-3 bg-brand/95 backdrop-blur-md rounded-14 p-3.5 border-2 border-text shadow-sm flex items-start gap-2.5">
-                <span className="text-base flex-shrink-0">💡</span>
+              <div className="col-span-2 sm:col-span-3 bg-brand/95 backdrop-blur-md rounded-12 sm:rounded-14 p-2.5 sm:p-3.5 border-2 border-text shadow-sm flex items-start gap-2 sm:gap-2.5">
+                <span className="text-sm sm:text-base flex-shrink-0">💡</span>
                 <div>
-                  <span className="font-tag text-[10px] font-extrabold uppercase tracking-wider text-text block">
+                  <span className="font-tag text-[9px] xs:text-[10px] font-extrabold uppercase tracking-wider text-text block">
                     Andalusian Kitchen Secret:
                   </span>
-                  <p className="text-xs sm:text-sm text-text/90 font-medium leading-snug mt-0.5">
+                  <p className="text-[11px] xs:text-xs sm:text-sm text-text/90 font-medium leading-snug mt-0.5">
                     {activeMethod.proTip}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* BOTTOM-RIGHT: Bottle Pairing & Quick-Add Card (5 cols on lg) */}
             {/* BOTTOM-RIGHT: Bottle Pairing & Quick-Add Card (5 cols on lg, Mobile Stacked) */}
             <div className="lg:col-span-5">
-              <div className="bg-highlight/95 backdrop-blur-md rounded-20 border-2 border-text shadow-graza p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="relative w-12 h-16 rounded-10 bg-background border border-text/30 p-1 flex-shrink-0">
+              <div className="bg-highlight/95 backdrop-blur-md rounded-16 sm:rounded-20 border-2 border-text shadow-graza p-2.5 xs:p-3.5 sm:p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3">
+                <div className="flex items-center gap-2.5 sm:gap-3">
+                  <div className="relative w-10 h-14 xs:w-12 xs:h-16 rounded-10 bg-background border border-text/30 p-1 flex-shrink-0">
                     <Image
                       src={pairedProduct.image}
                       alt={pairedProduct.title}
@@ -496,13 +513,13 @@ export const WaysToGoya: React.FC = () => {
                     />
                   </div>
                   <div className="min-w-0">
-                    <span className="font-tag text-[9px] font-extrabold text-goya-blue uppercase block truncate">
+                    <span className="font-tag text-[8.5px] xs:text-[9px] font-extrabold text-goya-blue uppercase block truncate">
                       Paired for {activeMethod.label}
                     </span>
-                    <h4 className="font-serif font-bold text-sm sm:text-base text-text leading-tight truncate">
+                    <h4 className="font-serif font-bold text-xs xs:text-sm sm:text-base text-text leading-tight truncate">
                       {pairedProduct.title}
                     </h4>
-                    <span className="font-tag text-xs font-extrabold text-text block">
+                    <span className="font-tag text-[11px] xs:text-xs font-extrabold text-text block">
                       ${pairedProduct.price}.00 • {pairedProduct.format.toUpperCase()}
                     </span>
                   </div>
@@ -510,9 +527,9 @@ export const WaysToGoya: React.FC = () => {
 
                 <button
                   onClick={() => addToCart(pairedProduct, 1)}
-                  className="btn--std !py-2.5 !px-4 text-xs font-extrabold flex items-center justify-center gap-1.5 whitespace-nowrap shadow-sm hover:scale-102 active:scale-95 w-full sm:w-auto"
+                  className="btn--std !py-2 !px-3 sm:!py-2.5 sm:!px-4 text-[11px] xs:text-xs font-extrabold flex items-center justify-center gap-1.5 whitespace-nowrap shadow-sm hover:scale-102 active:scale-95 w-full sm:w-auto"
                 >
-                  <ShoppingBag size={14} />
+                  <ShoppingBag size={13} className="sm:w-3.5 sm:h-3.5" />
                   <span>Add (${pairedProduct.price})</span>
                 </button>
               </div>

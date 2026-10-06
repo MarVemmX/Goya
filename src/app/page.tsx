@@ -64,13 +64,13 @@ export default function HomePage() {
           />
 
           {/* Product Feed Grid */}
-          <div className="max-w-7xl mx-auto px-4 lg:px-8 py-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
             {filteredProducts.length === 0 ? (
-              <div className="text-center py-20 bg-highlight/40 rounded-20 border border-dashed border-text/30 p-8">
-                <h3 className="text-2xl font-serif font-bold text-text mb-2">
+              <div className="text-center py-16 sm:py-20 bg-highlight/40 rounded-20 border border-dashed border-text/30 p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-serif font-bold text-text mb-2">
                   No olive oil found in this combination
                 </h3>
-                <p className="text-sm text-text/70 mb-6">
+                <p className="text-xs sm:text-sm text-text/70 mb-6">
                   Try clearing your format filter to see all our Spanish products.
                 </p>
                 <button
@@ -84,7 +84,7 @@ export default function HomePage() {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
                 {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

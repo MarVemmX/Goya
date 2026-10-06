@@ -25,6 +25,9 @@ interface CartContextType {
   setIsSearchOpen: (open: boolean) => void;
   isMotionPaused: boolean;
   setIsMotionPaused: (paused: boolean) => void;
+  isHeroVideoMuted: boolean;
+  setIsHeroVideoMuted: (muted: boolean) => void;
+  toggleHeroVideoMute: () => void;
   subtotal: number;
   totalItems: number;
   freeShippingThreshold: number;
@@ -40,6 +43,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMotionPaused, setIsMotionPaused] = useState(false);
+  const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true);
+
+  const toggleHeroVideoMute = () => setIsHeroVideoMuted((prev) => !prev);
 
   // Load cart from localStorage if available
   useEffect(() => {
@@ -135,6 +141,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setIsSearchOpen,
         isMotionPaused,
         setIsMotionPaused,
+        isHeroVideoMuted,
+        setIsHeroVideoMuted,
+        toggleHeroVideoMute,
         subtotal,
         totalItems,
         freeShippingThreshold,

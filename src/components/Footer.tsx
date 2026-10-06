@@ -19,12 +19,12 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="w-full bg-background border-t-2 border-text text-text">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-dashed border-text">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 sm:pb-16 border-b border-dashed border-text">
           {/* Newsletter Box */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          <div className="col-span-2 md:col-span-4 lg:col-span-5 flex flex-col justify-between">
             <div>
-              <p className="text-xl md:text-2xl font-serif font-bold max-w-sm leading-snug">
+              <p className="text-lg sm:text-xl md:text-2xl font-serif font-bold max-w-sm leading-snug">
                 Friends let friends know about fresh harvests, tapas recipes, and new squeeze bottles.
               </p>
               <p className="text-xs text-text/75 mt-2 max-w-sm">
@@ -32,15 +32,15 @@ export const Footer: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-8 max-w-md">
+            <div className="mt-6 sm:mt-8 max-w-md">
               {submitted ? (
-                <div className="bg-brand border border-text p-4 rounded-16 flex items-center gap-2 font-bold text-sm">
+                <div className="bg-brand border border-text p-3.5 sm:p-4 rounded-16 flex items-center gap-2 font-bold text-xs sm:text-sm">
                   <Check size={18} />
                   <span>¡Olé! You're in the Glug Club. Check your inbox!</span>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-                  <label htmlFor="newsletter-email" className="font-tag text-xs font-bold uppercase">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-1.5 sm:gap-2">
+                  <label htmlFor="newsletter-email" className="font-tag text-[11px] sm:text-xs font-bold uppercase">
                     Your Email Address
                   </label>
                   <div className="relative flex items-center">
@@ -51,11 +51,11 @@ export const Footer: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="cook@kitchen.com"
-                      className="w-full bg-highlight border border-text rounded-full py-3 pl-5 pr-28 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand"
+                      className="w-full bg-highlight border border-text rounded-full py-2.5 sm:py-3 pl-4 pr-24 sm:pr-28 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand"
                     />
                     <button
                       type="submit"
-                      className="absolute right-1.5 top-1/2 -translate-y-1/2 btn--std !py-1.5 !px-4 !text-xs uppercase font-bold flex items-center gap-1"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 btn--std !py-1.5 !px-3 sm:!px-4 !text-xs uppercase font-bold flex items-center gap-1 cursor-pointer"
                     >
                       <span>Submit</span>
                       <ArrowRight size={13} />
@@ -67,8 +67,8 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Nav Links Column 1: Shop */}
-          <div className="lg:col-span-3">
-            <h4 className="font-tag text-xs font-bold uppercase tracking-wider text-goya-blue mb-4">
+          <div className="col-span-1 md:col-span-2 lg:col-span-3">
+            <h4 className="font-tag text-xs font-bold uppercase tracking-wider text-goya-blue mb-3 sm:mb-4">
               Shop Olive Oil
             </h4>
             <ul className="flex flex-col gap-2.5 text-sm font-medium">
@@ -163,11 +163,11 @@ export const Footer: React.FC = () => {
           </div>
 
           {/* Nav Links Column 3: Social */}
-          <div className="lg:col-span-2">
-            <h4 className="font-tag text-xs font-bold uppercase tracking-wider text-goya-blue mb-4">
+          <div className="col-span-2 md:col-span-1 lg:col-span-2">
+            <h4 className="font-tag text-xs font-bold uppercase tracking-wider text-goya-blue mb-3 sm:mb-4">
               Social
             </h4>
-            <ul className="flex flex-col gap-2.5 text-sm font-medium">
+            <ul className="flex flex-row md:flex-col flex-wrap gap-x-4 gap-y-2 text-sm font-medium">
               <li>
                 <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:underline hover:decoration-dashed">
                   Instagram
@@ -180,7 +180,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="https://youtube.com" target="_blank" rel="noreferrer" className="hover:underline hover:decoration-dashed">
-                  YouTube Kitchen
+                  YouTube
                 </a>
               </li>
               <li>
@@ -193,21 +193,21 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Giant Graza-Style Footprint Wordmark with Exact Vector Brand Logo */}
-        <div className="pt-12 pb-8 flex flex-col items-center justify-center text-center">
-          <div className="w-full max-w-4xl text-center overflow-hidden py-4 select-none flex flex-col items-center">
+        <div className="pt-8 sm:pt-12 pb-6 sm:pb-8 flex flex-col items-center justify-center text-center">
+          <div className="w-full max-w-4xl text-center overflow-hidden py-4 px-2 select-none flex flex-col items-center">
             <GoyaWordmark
-              className="w-full max-w-2xl h-auto text-text opacity-95 hover:opacity-100 transition-opacity"
+              className="w-full max-w-xl md:max-w-2xl h-auto text-text opacity-95 hover:opacity-100 transition-opacity"
               fillColor="currentColor"
               withUnderline={true}
             />
-            <span className="font-serif italic text-lg md:text-2xl text-text/80 mt-4 block">
+            <span className="font-serif italic text-base sm:text-lg md:text-2xl text-text/80 mt-3 sm:mt-4 block leading-tight">
               Aceite de Oliva Virgen Extra • Primera Presión en Frío
             </span>
           </div>
 
           {/* Bottom Copyright & Legal & Accessibility Controls */}
-          <div className="w-full mt-6 pt-6 border-t border-dashed border-text/20 flex flex-col sm:flex-row items-center justify-between text-xs font-tag text-text/70 gap-4">
-            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          <div className="w-full mt-6 pt-6 border-t border-dashed border-text/20 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-tag text-text/70 gap-3 sm:gap-4 text-center sm:text-left">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-6">
               <a href="#" className="hover:underline">Privacy Policy</a>
               <a href="#" className="hover:underline">Terms of Service</a>
               <a href="#" className="hover:underline">Accessibility</a>

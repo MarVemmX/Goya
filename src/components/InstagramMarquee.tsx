@@ -20,13 +20,13 @@ export const InstagramMarquee: React.FC = () => {
   ];
 
   return (
-    <section id="social-feed" className="w-full py-16 overflow-hidden bg-background border-t border-dashed border-text">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <section id="social-feed" className="w-full py-12 sm:py-16 overflow-hidden bg-background border-t border-dashed border-text">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-8 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <span className="font-tag text-xs font-bold text-goya-blue uppercase tracking-wider block">
+          <span className="font-tag text-[11px] sm:text-xs font-bold text-goya-blue uppercase tracking-wider block">
             Community Kitchen
           </span>
-          <h2 className="text-2xl md:text-3xl font-serif font-bold text-text">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-serif font-bold text-text">
             See what else we’re cooking up in Spain &amp; beyond:
           </h2>
         </div>
@@ -35,7 +35,7 @@ export const InstagramMarquee: React.FC = () => {
           href="https://www.instagram.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 group font-semibold uppercase font-tag text-xs tracking-wider"
+          className="inline-flex items-center gap-2 group font-semibold uppercase font-tag text-xs tracking-wider self-start md:self-auto"
         >
           <span className="border-b border-dashed border-text group-hover:text-goya-blue">
             Follow @GoyaOliveOil
@@ -48,12 +48,12 @@ export const InstagramMarquee: React.FC = () => {
 
       {/* Infinite scrolling marquee track */}
       <div className="relative w-full overflow-hidden select-none">
-        <div className="animate-marquee flex gap-4">
+        <div className="animate-marquee flex gap-3 sm:gap-4">
           {/* First loop of images */}
           {images.map((src, index) => (
             <div
               key={`marquee-1-${index}`}
-              className="relative w-48 h-64 md:w-56 md:h-72 rounded-20 overflow-hidden border border-text/30 flex-shrink-0 shadow-sm group hover:scale-[1.02] transition-transform duration-300"
+              className="relative w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 rounded-16 sm:rounded-20 overflow-hidden border border-text/30 flex-shrink-0 shadow-sm group hover:scale-[1.02] transition-transform duration-300"
             >
               <Image
                 src={src}
@@ -74,7 +74,7 @@ export const InstagramMarquee: React.FC = () => {
           {images.map((src, index) => (
             <div
               key={`marquee-2-${index}`}
-              className="relative w-48 h-64 md:w-56 md:h-72 rounded-20 overflow-hidden border border-text/30 flex-shrink-0 shadow-sm group hover:scale-[1.02] transition-transform duration-300"
+              className="relative w-36 h-48 sm:w-48 sm:h-64 md:w-56 md:h-72 rounded-16 sm:rounded-20 overflow-hidden border border-text/30 flex-shrink-0 shadow-sm group hover:scale-[1.02] transition-transform duration-300"
             >
               <Image
                 src={src}

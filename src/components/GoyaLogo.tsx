@@ -184,14 +184,14 @@ export const GoyaLogo: React.FC<GoyaLogoProps> = ({
 
   // Default "full" header variant: Don Sixto bottle crest + exact vector GOYA wordmark + Spain pill
   return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
+    <div className={`flex items-center gap-1.5 xs:gap-2 sm:gap-2.5 select-none flex-shrink-0 ${className}`}>
       {/* Don Sixto Bottle Emblem */}
-      <GoyaBottleCrest className="h-full w-auto aspect-square" />
+      <GoyaBottleCrest className="h-full w-auto aspect-square flex-shrink-0" />
 
       {/* Authentic Vector GOYA Wordmark */}
-      <div className="flex items-center h-full">
-        <GoyaWordmark className="h-[75%] w-auto" fillColor={fillColor} withUnderline={withUnderline} />
-        <span className="text-[10px] font-tag font-extrabold uppercase ml-2 px-1.5 py-0.5 rounded-full border border-text text-text bg-brand tracking-wider hidden sm:inline-block">
+      <div className="flex items-center h-full flex-shrink-0">
+        <GoyaWordmark className="h-[75%] sm:h-[80%] w-auto flex-shrink-0" fillColor={fillColor} withUnderline={withUnderline} />
+        <span className="text-[9px] xs:text-[10px] font-tag font-extrabold uppercase ml-1.5 sm:ml-2 px-1.5 py-0.5 rounded-full border border-text text-text bg-brand tracking-wider hidden sm:inline-block flex-shrink-0">
           España
         </span>
       </div>

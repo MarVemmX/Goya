@@ -24,18 +24,18 @@ export const FormatFilter: React.FC<FormatFilterProps> = ({
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 lg:px-8 pt-8 pb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-3 sm:pb-4 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4">
       {/* Format Selector Pills */}
-      <fieldset className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <legend className="font-tag text-xs font-bold uppercase tracking-wider text-text mb-2 sm:mb-0 sm:mr-3">
+      <fieldset className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full md:w-auto">
+        <legend className="font-tag text-[11px] sm:text-xs font-bold uppercase tracking-wider text-text mb-1 sm:mb-0 sm:mr-3">
           Select Format:
         </legend>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-1.5 xs:gap-2 sm:gap-3">
           {/* All Formats option */}
           <button
             onClick={() => onSelectFormat("all")}
-            className={`flex items-center gap-2 text-xs md:text-sm font-medium py-1.5 px-3 rounded-full border transition-all ${
+            className={`flex items-center gap-1 sm:gap-1.5 text-[10.5px] xs:text-[11px] sm:text-xs md:text-sm font-medium py-1 sm:py-1.5 px-2 xs:px-2.5 sm:px-3 rounded-full border transition-all cursor-pointer ${
               selectedFormat === "all"
                 ? "bg-text text-highlight border-text shadow-sm"
                 : "bg-highlight border-text/40 text-text hover:border-text"
@@ -50,13 +50,13 @@ export const FormatFilter: React.FC<FormatFilterProps> = ({
               <button
                 key={fmt.id}
                 onClick={() => onSelectFormat(isSelected ? "all" : fmt.id)}
-                className={`flex items-center gap-2 text-xs md:text-sm font-medium py-1.5 px-3 rounded-full border transition-all ${
+                className={`flex items-center gap-1 sm:gap-1.5 text-[10.5px] xs:text-[11px] sm:text-xs md:text-sm font-medium py-1 sm:py-1.5 px-2 xs:px-2.5 sm:px-3 rounded-full border transition-all cursor-pointer ${
                   isSelected
                     ? "bg-brand border-text text-text font-bold shadow-sm ring-1 ring-text"
                     : "bg-highlight border-text/40 text-text hover:border-text"
                 }`}
               >
-                <span className="w-5 h-5 relative flex-shrink-0">
+                <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 relative flex-shrink-0">
                   <Image
                     src={fmt.icon}
                     alt={fmt.label}
@@ -74,7 +74,7 @@ export const FormatFilter: React.FC<FormatFilterProps> = ({
       </fieldset>
 
       {/* Product Count & Filter Clear */}
-      <div className="flex items-center gap-3 font-tag text-xs text-text/80 self-end md:self-auto">
+      <div className="flex items-center justify-between md:justify-end gap-3 font-tag text-[11px] sm:text-xs text-text/80 w-full md:w-auto pt-1 sm:pt-0">
         <span>Showing {productCount} items</span>
         {selectedFormat !== "all" && (
           <button

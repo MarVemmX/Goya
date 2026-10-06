@@ -19,40 +19,40 @@ export const ReviewsSection: React.FC = () => {
         );
 
   return (
-    <section className="w-full py-16 lg:py-24 bg-highlight/30 border-t border-dashed border-text">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+    <section className="w-full py-12 sm:py-16 lg:py-24 bg-highlight/30 border-t border-dashed border-text">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with 4.9 Stars */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-10 border-b border-dashed border-text/30">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 pb-6 sm:pb-10 border-b border-dashed border-text/30">
           <div>
-            <span className="font-tag text-xs font-bold text-goya-blue tracking-widest uppercase mb-1 block">
+            <span className="font-tag text-[11px] sm:text-xs font-bold text-goya-blue tracking-widest uppercase mb-1 block">
               14,800+ Verified Cooks
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-text">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-text">
               Real cooks. Generous glugs.
             </h2>
           </div>
 
-          <div className="flex items-center gap-4 bg-background p-4 rounded-20 border border-text">
+          <div className="flex items-center gap-3.5 sm:gap-4 bg-background p-3 sm:p-4 rounded-16 sm:rounded-20 border border-text w-full sm:w-auto shadow-xs">
             <div className="flex text-text">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={20} fill="currentColor" className="text-text" />
+                <Star key={i} size={18} fill="currentColor" className="text-text" />
               ))}
             </div>
             <div className="text-left font-tag text-xs">
-              <span className="font-bold text-sm block">4.9 / 5.0 Rating</span>
-              <span className="text-text/70">World Olive Oil Award Winner</span>
+              <span className="font-bold text-xs sm:text-sm block">4.9 / 5.0 Rating</span>
+              <span className="text-text/70 text-[10px] sm:text-xs">World Olive Oil Award Winner</span>
             </div>
           </div>
         </div>
 
         {/* Filter Keywords */}
-        <div className="pt-6 pb-8 flex items-center gap-2 overflow-x-auto scrollbar--none">
-          <span className="font-tag text-xs text-text/60 uppercase mr-2">Filter By:</span>
+        <div className="pt-4 sm:pt-6 pb-6 sm:pb-8 flex items-center gap-2 overflow-x-auto scrollbar--none">
+          <span className="font-tag text-[11px] sm:text-xs text-text/60 uppercase mr-1 flex-shrink-0">Filter By:</span>
           {filterKeywords.map((kw) => (
             <button
               key={kw}
               onClick={() => setFilter(kw)}
-              className={`text-xs font-medium px-4 py-1.5 rounded-full border transition-colors ${
+              className={`text-[11px] sm:text-xs font-medium px-3 sm:px-4 py-1 sm:py-1.5 rounded-full border transition-colors whitespace-nowrap cursor-pointer ${
                 filter === kw
                   ? "bg-brand text-text border-text font-bold"
                   : "bg-highlight border-text/30 text-text hover:border-text"
@@ -64,11 +64,11 @@ export const ReviewsSection: React.FC = () => {
         </div>
 
         {/* Reviews Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {(filteredReviews.length > 0 ? filteredReviews : REVIEWS).map((rev, idx) => (
             <div
               key={idx}
-              className="bg-background rounded-20 p-6 border border-text/30 flex flex-col justify-between shadow-sm hover:border-text transition-colors"
+              className="bg-background rounded-16 sm:rounded-20 p-4 sm:p-6 border border-text/30 flex flex-col justify-between shadow-sm hover:border-text transition-colors"
             >
               <div>
                 {/* 5 Stars */}
