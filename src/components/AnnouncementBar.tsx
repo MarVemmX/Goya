@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { Pause, Play } from "lucide-react";
 
 export const AnnouncementBar: React.FC = () => {
   const { hasFreeShipping, amountUntilFreeShipping, isMotionPaused, setIsMotionPaused } = useCart();
@@ -45,10 +46,20 @@ export const AnnouncementBar: React.FC = () => {
                 document.documentElement.classList.remove("motion-paused");
               }
             }}
-            className="hover:underline text-[11px]"
+            className="hover:underline flex items-center gap-1.5 text-[11px] cursor-pointer"
             title="Toggle Animations"
           >
-            {isMotionPaused ? "▶ Play Motion" : "⏸ Pause Motion"}
+            {isMotionPaused ? (
+              <>
+                <Play size={11} className="fill-current flex-shrink-0" />
+                <span>Play Motion</span>
+              </>
+            ) : (
+              <>
+                <Pause size={11} className="fill-current flex-shrink-0" />
+                <span>Pause Motion</span>
+              </>
+            )}
           </button>
         </div>
       </div>

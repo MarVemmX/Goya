@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { GoyaLogo, GoyaWordmark } from "./GoyaLogo";
 import { useCart } from "@/context/CartContext";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Pause, Play } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const { isMotionPaused, setIsMotionPaused } = useCart();
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
                   <label htmlFor="newsletter-email" className="font-tag text-[11px] sm:text-xs font-bold uppercase">
                     Your Email Address
                   </label>
-                  <div className="relative flex items-center">
+                  <div className="relative flex items-center w-full">
                     <input
                       id="newsletter-email"
                       type="email"
@@ -51,11 +51,11 @@ export const Footer: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="cook@kitchen.com"
-                      className="w-full bg-highlight border border-text rounded-full py-2.5 sm:py-3 pl-4 pr-24 sm:pr-28 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand"
+                      className="w-full bg-highlight border border-text rounded-full h-11 sm:h-12 pl-4 pr-24 sm:pr-28 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand shadow-xs"
                     />
                     <button
                       type="submit"
-                      className="absolute right-1 top-1/2 -translate-y-1/2 btn--std !py-1.5 !px-3 sm:!px-4 !text-xs uppercase font-bold flex items-center gap-1 cursor-pointer"
+                      className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 sm:h-9 px-3 sm:px-4 bg-brand hover:bg-highlight text-text border border-text rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-xs hover:shadow-sm active:scale-95 transition-all cursor-pointer select-none"
                     >
                       <span>Submit</span>
                       <ArrowRight size={13} />
@@ -154,9 +154,19 @@ export const Footer: React.FC = () => {
                       document.documentElement.classList.remove("motion-paused");
                     }
                   }}
-                  className="hover:underline hover:decoration-dashed text-left font-tag text-xs"
+                  className="hover:underline hover:decoration-dashed text-left font-tag text-xs flex items-center gap-1.5 cursor-pointer"
                 >
-                  {isMotionPaused ? "▶ Play Animations" : "⏸ Pause Animations"}
+                  {isMotionPaused ? (
+                    <>
+                      <Play size={12} className="fill-current flex-shrink-0" />
+                      <span>Play Animations</span>
+                    </>
+                  ) : (
+                    <>
+                      <Pause size={12} className="fill-current flex-shrink-0" />
+                      <span>Pause Animations</span>
+                    </>
+                  )}
                 </button>
               </li>
             </ul>
@@ -225,7 +235,17 @@ export const Footer: React.FC = () => {
                 className="hover:underline flex items-center gap-1.5 font-bold text-text bg-highlight px-2.5 py-1 rounded-full border border-text/30 cursor-pointer transition-colors hover:bg-brand"
                 title="Toggle Animations"
               >
-                <span>{isMotionPaused ? "▶ Play Motion" : "⏸ Pause Motion"}</span>
+                {isMotionPaused ? (
+                  <>
+                    <Play size={11} className="fill-current flex-shrink-0" />
+                    <span>Play Motion</span>
+                  </>
+                ) : (
+                  <>
+                    <Pause size={11} className="fill-current flex-shrink-0" />
+                    <span>Pause Motion</span>
+                  </>
+                )}
               </button>
             </div>
             <p>© {new Date().getFullYear()} Goya Foods &amp; Goya en España, S.A. All rights reserved.</p>

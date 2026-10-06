@@ -283,11 +283,11 @@ export const WaysToGoya: React.FC = () => {
             ))}
           </div>
 
-          {/* TOP ZONE: Left Rotary Dial (Compact on mobile) + Right Dish Information */}
+          {/* TOP ZONE: Left Rotary Dial (Desktop only) + Dish Information */}
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-start">
-            {/* LEFT / SIDE: The Compact Rotator Dial in Liquid Glass (4 cols on lg) */}
-            <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-center lg:items-start w-full">
-              <div className="bg-black/40 backdrop-blur-2xl rounded-20 xs:rounded-24 sm:rounded-[36px] border border-white/25 p-2.5 xs:p-3.5 sm:p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex flex-col items-center select-none w-full max-w-[270px] xs:max-w-[290px] sm:max-w-[310px] mx-auto">
+            {/* LEFT / SIDE: The Rotary Dial in Liquid Glass (Desktop only, hidden on mobile per user request) */}
+            <div className="hidden lg:flex lg:col-span-4 xl:col-span-4 flex-col items-start w-full">
+              <div className="bg-black/40 backdrop-blur-2xl rounded-[36px] border border-white/25 p-4 sm:p-5 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] flex flex-col items-center select-none w-full max-w-[310px]">
                 {/* Rotator Header */}
                 <div className="flex items-center justify-between w-full pb-2 mb-1 border-b border-white/15 text-[11px] xs:text-xs font-tag">
                   <span className="font-extrabold uppercase text-white tracking-wider flex items-center gap-1.5 drop-shadow-sm">
@@ -395,7 +395,7 @@ export const WaysToGoya: React.FC = () => {
             </div>
 
             {/* RIGHT: Primary Dish Information & Story */}
-            <div className="lg:col-span-8 xl:col-span-8 space-y-3 sm:space-y-4">
+            <div className="w-full lg:col-span-8 xl:col-span-8 space-y-3 sm:space-y-4">
               {/* Method & Heat Badge */}
               <div className="flex flex-wrap items-center gap-1.5 xs:gap-2">
                 <span className="bg-brand text-text font-tag text-[10px] xs:text-[11px] sm:text-xs font-black uppercase px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full border border-text shadow-sm">

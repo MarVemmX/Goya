@@ -36,25 +36,25 @@ export const CollectionNav: React.FC<CollectionNavProps> = ({
       </div>
 
       {/* Category Tabs Bar with Graza's signature dashed grid */}
-      <div className="relative w-full overflow-x-auto scrollbar--none border-y border-dashed border-text">
-        <nav aria-label="Collections" className="max-w-7xl mx-auto">
-          <ul className="flex sm:grid sm:grid-cols-4 min-w-[500px] sm:min-w-0 w-full text-center">
+      <div className="relative w-full overflow-x-auto scrollbar-none border-y border-dashed border-text">
+        <nav aria-label="Collections" className="max-w-7xl mx-auto w-full">
+          <ul className="grid grid-cols-4 w-full min-w-0 text-center">
             {tabs.map((tab) => {
               const isActive = activeCategory === tab.id;
               return (
                 <li
                   key={tab.id}
-                  className="flex-1 min-w-[125px] sm:min-w-0 border-r border-dashed border-text last:border-r-0"
+                  className="min-w-0 border-r border-dashed border-text last:border-r-0"
                 >
                   <button
                     onClick={() => onSelectCategory(tab.id)}
-                    className={`w-full py-3 sm:py-3.5 px-2.5 sm:px-3 uppercase font-semibold text-[11px] sm:text-xs md:text-sm tracking-wider transition-colors duration-150 flex items-center justify-center gap-1.5 whitespace-nowrap cursor-pointer active:scale-98 ${
+                    className={`w-full py-2.5 sm:py-3.5 px-1 xs:px-2 sm:px-3 uppercase font-semibold text-[9.5px] xs:text-[11px] sm:text-xs md:text-sm tracking-normal xs:tracking-wider transition-colors duration-150 flex items-center justify-center gap-1 sm:gap-1.5 truncate cursor-pointer select-none active:scale-98 ${
                       isActive
                         ? "bg-brand text-text font-bold shadow-inner"
                         : "bg-background text-text/80 hover:bg-highlight hover:text-text"
                     }`}
                   >
-                    <span>{tab.label}</span>
+                    <span className="truncate">{tab.label}</span>
                     {isActive && (
                       <span className="w-1.5 h-1.5 rounded-full bg-text inline-block flex-shrink-0"></span>
                     )}

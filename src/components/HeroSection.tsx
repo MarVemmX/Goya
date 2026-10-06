@@ -245,16 +245,23 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* BOTTOM-RIGHT: Click Me Bottle Card in Liquid Glass (Mobile Compact) */}
+        {/* BOTTOM-RIGHT: Click Me Bottle Card in Liquid Glass (Compact Pill on Mobile, Expanded on Desktop) */}
         <div
           onClick={handleManualSqueeze}
           title="Click to Pour!"
-          className={`absolute bottom-3 right-3 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12 z-20 bg-black/40 backdrop-blur-2xl p-1.5 xs:p-2 sm:p-4 rounded-14 xs:rounded-16 sm:rounded-28 border border-white/30 shadow-[0_8px_32px_0_rgba(0,0,0,0.45)] cursor-pointer group hover:bg-white/15 hover:border-white/50 hover:scale-105 active:scale-95 transition-all max-w-[130px] xs:max-w-[145px] sm:max-w-none select-none ${
+          className={`absolute bottom-3 right-3 xs:bottom-4 xs:right-4 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 lg:bottom-12 lg:right-12 z-30 bg-black/55 hover:bg-black/75 backdrop-blur-2xl py-1.5 px-2.5 xs:py-2 xs:px-3 sm:p-3.5 md:p-4 rounded-full sm:rounded-28 border border-white/40 hover:border-white/70 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] cursor-pointer group hover:scale-105 active:scale-95 transition-all select-none w-auto ${
             isBottleSqueezed ? "animate-bottle-squeeze" : ""
           }`}
         >
-          <div className="flex items-center gap-2 sm:gap-3.5">
-            <div className="relative w-8 h-10 sm:w-12 sm:h-14 flex-shrink-0 flex items-center justify-center">
+          {/* Subtle Attention Ping Beacon on Mobile & Desktop */}
+          <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5 sm:h-3 sm:w-3 pointer-events-none">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-80" />
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-brand border border-text/40 shadow-xs" />
+          </span>
+
+          <div className="flex items-center gap-1.5 xs:gap-2 sm:gap-3.5">
+            {/* Bottle Thumbnail */}
+            <div className="relative w-5 h-7 xs:w-6 xs:h-8 sm:w-10 sm:h-12 md:w-11 md:h-14 flex-shrink-0 flex items-center justify-center">
               <Image
                 src="/images/goya-bottle-thumb.png"
                 alt="Goya Olive Oil Bottle"
@@ -262,14 +269,24 @@ export const HeroSection: React.FC = () => {
                 className="object-contain filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)] group-hover:scale-110 transition-transform"
               />
             </div>
-            <div>
-              <span className="font-tag text-[8px] sm:text-[9.5px] font-extrabold text-brand uppercase tracking-wider block drop-shadow-xs">
-                Interactive
-              </span>
-              <span className="font-serif font-bold text-xs sm:text-base text-white block leading-tight drop-shadow-sm mt-0.5">
+
+            {/* Text Block */}
+            <div className="flex flex-col justify-center min-w-0 text-left">
+              {/* "Interactive" pill: Desktop only */}
+              <div className="hidden sm:flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand animate-pulse flex-shrink-0" />
+                <span className="font-tag text-[9.5px] font-extrabold text-brand uppercase tracking-wider block drop-shadow-xs whitespace-nowrap">
+                  Interactive
+                </span>
+              </div>
+
+              {/* "Pour Me!" Title: Visible everywhere with clean responsive typography */}
+              <span className="font-serif font-bold text-xs xs:text-sm sm:text-base text-white block leading-tight drop-shadow-sm whitespace-nowrap">
                 Pour Me!
               </span>
-              <span className="font-tag text-[8px] sm:text-[10px] text-white/80 block tracking-wide mt-0.5 drop-shadow-xs">
+
+              {/* "Tap or Scroll ↓": Desktop only */}
+              <span className="hidden sm:block font-tag text-[9.5px] text-white/80 tracking-wide mt-0.5 drop-shadow-xs whitespace-nowrap">
                 Tap or Scroll ↓
               </span>
             </div>
